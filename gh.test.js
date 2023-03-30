@@ -56,5 +56,15 @@ describe("The tests of diffrent pages", () => {
     const actual = await page.$eval(button, (link) => link.textContent);
     expect(actual).toContain("Get started");
   });
+});
 
+describe("Netology test", () => {
+  test("The h1 header content'", async () => {
+    await page.goto("https://netology.ru", {timeout: 0});
+    const firstLink = await page.$("header div div a");
+    await firstLink.click();
+    await page.waitForSelector('h1');
+    const title2 = await page.title();
+    expect(title2).toEqual('Нетология — обучение современным профессиям онлайн');
+  }, 60000);
 });
